@@ -11,13 +11,14 @@ public class InterfaceScript : MonoBehaviour
     public Slider RestSlider;
     public Text TempoTexto;
     public Image clockHand;
-    private const float SEGUNDOS_REAIS_POR_DIA = 30f;
+    private const int SEGUNDOS_REAIS_POR_DIA = 180;
     private float dia;
     public int contaDia = 01;
 
     public float rotacao;
     public float normalizacaoDia;
-    public float grausRotacaoPorDia = 360f;
+    public float grausRotacaoPorDia = 360;
+    public float tempo;
 
     private void Awake()
     {
@@ -32,12 +33,14 @@ public class InterfaceScript : MonoBehaviour
         //Realizando a rotação da Agulha do relogio
         dia += Time.deltaTime / SEGUNDOS_REAIS_POR_DIA;
 
-        normalizacaoDia = dia % 1f;
-        //tempo = -Time.realtimeSinceStartup * 30f;
-        clockHand.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -normalizacaoDia * grausRotacaoPorDia));
+        normalizacaoDia = dia % 1;
+        tempo = normalizacaoDia *grausRotacaoPorDia;
+        clockHand.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -tempo));
         rotacao = clockHand.transform.rotation.eulerAngles.z;
 
-        if (normalizacaoDia > 0.9988f) {
+        if (tempo > 359.98)
+        {   
+            clockHand.transform.rotation = Quaternion.Euler(0, 0, 0);
             contaDia++;
             TempoTexto.text = "Dia " + contaDia;
         }
