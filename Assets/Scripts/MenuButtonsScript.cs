@@ -5,20 +5,7 @@ using UnityEngine.UI;
 
 public class MenuButtonsScript : MonoBehaviour
 {
-    public Button ActionsButton;
     public GameObject ActionsMenu;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void ActivateMenu()
     {
@@ -28,4 +15,6 @@ public class MenuButtonsScript : MonoBehaviour
         else
             ActionsMenu.SetActive(true);
     }
+
+    
 }
